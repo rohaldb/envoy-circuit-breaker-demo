@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+
+  web1:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    volumes:
+      - ./service-envoy.yaml:/etc/service-envoy.yaml
+    networks:
+      envoymesh:
+        aliases:
+          - service1
+    environment:
+      - SERVICE_NAME=1
+    expose:
+      # Expose ports 80 (for general traffic) and 8001 (for the admin server)
+      - "80"
+      - "8001"
+    ports:
+      - "3000:80"
+      - "8001:8001"
+
+networks:
+  envoymesh: {}
