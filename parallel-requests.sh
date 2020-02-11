@@ -8,3 +8,5 @@ do
   bash ./make-request.sh $c 2 &
   (( c ++ ))
 done
+
+wait
